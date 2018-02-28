@@ -1,0 +1,28 @@
+{
+  "name": "boilerplate-node",
+  "version": "1.0.0",
+  "description": "Basic structure for NodeJS projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpsdantas/boilerplate-node.git"
+  },
+  "author": "Marcus Dantas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpsdantas/boilerplate-node/issues"
+  },
+  "homepage": "https://github.com/mpsdantas/boilerplate-node#readme",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "consign": "0.1.6",
+    "ejs": "2.5.7",
+    "express": "4.16.2",
+    "express-session": "1.15.6",
+    "express-validation": "1.0.2",
+    "express-validator": "5.0.2"
+  }
+}
