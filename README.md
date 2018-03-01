@@ -11,6 +11,20 @@ Make sure you have `node` and `npm` installed. It is important to use a version 
 `$ npm install --i`
 
 
+## Using
+
+Make sure you have installed all the dependencies. In the project root type:
+
+`$ node app`
+
+## Result
+
+If everything goes well you will have this result in your terminal:
+
+`➡➡➡ The server is online: http://localhost:3000/ ☻`
+
+
+
 
 
 
