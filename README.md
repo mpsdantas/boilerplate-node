@@ -10,8 +10,6 @@ Make sure you have the recommended `node` and `npm` versions in this README. If 
 
 `$ npm install --i`
 
-Make sure you have `MongoDB` installed and that your service is active, so edit the `variables.env.sample` file and save it to the root named `variables.env` with your database settings.
-
 
 ## Using
 
@@ -19,11 +17,6 @@ Make sure you have installed all the dependencies. In the project root type:
 
 `$ node app`
 
-## Optional
-
-If you do not want to run the `node` command at all times, install the `nodemon`:
-
-`$ npm install --g nodemon`
 
 ## Result
 
