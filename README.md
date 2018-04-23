@@ -6,7 +6,7 @@ Basic structure for NodeJS projects :open_file_folder: :paperclip: :octocat:
 
 ## Install
 
-Make sure you have `node` and `npm` installed. It is important to use a version higher than node 8.
+Make sure you have the recommended `node` and `npm` versions in this README. If everything is correct run this command on your terminal:
 
 `$ npm install --i`
 
@@ -16,6 +16,7 @@ Make sure you have `node` and `npm` installed. It is important to use a version 
 Make sure you have installed all the dependencies. In the project root type:
 
 `$ node app`
+
 
 ## Result
 
