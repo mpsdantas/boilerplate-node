@@ -15,7 +15,7 @@ Make sure you have the recommended `node` and `npm` versions in this README. If 
 
 Make sure you have installed all the dependencies. In the project root type:
 
-`$ node app`
+`$ npm start`
 
 
 ## Result
