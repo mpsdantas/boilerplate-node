@@ -1,26 +1,51 @@
-/* importar o módulo do framework express */
-const express = require('express');
+/*
+ * @Author: Marcus Dantas
+ * @Date: 2019-02-03 01:54:51
+ * @Last Modified by: Marcus Dantas
+ * @Last Modified time: 2019-02-24 20:04:48
+ */
 
-/* importar o módulo do consign */
-const consign = require('consign');
+const express = require("express");
 
-/* importar o módulo do body-parser */
-const bodyParser = require('body-parser');
+const consign = require("consign");
 
-/* importar o módulo do express-validator */
-const expressValidator = require('express-validator');
+const bodyParser = require("body-parser");
 
-/*Importando modulo morgan*/
-const morgan = require('morgan');
+const expressValidator = require("express-validator");
 
-/* iniciar o objeto do express */
+const morgan = require("morgan");
+
+const mongoose = require("mongoose");
+
+const ResponseErrorBuild = require("../src/utils/erros/ResponseBuildError");
+
+const SimpleNodeLogger = require("simple-node-logger");
+
+const caminhoLog = `${__dirname}/../logs/logs-system.log`;
+
+const opts = {
+	logFilePath: caminhoLog,
+	timestampFormat: "YYYY-MM-DD HH:mm:ss.SSS"
+};
+
+const log = require("simple-node-logger").createSimpleLogger(opts);
+
+global.log = log;
+
+require("module-alias/register");
+
 const app = express();
 
-/* Variaveis de ambiente. */
-const env = require('dotenv');
+const cors = require('cors')
 
-/* Importando o módulo do mongoose. */
-const mongoose = require('mongoose');
+app.use(cors());
+
+app.use(express.static("./public"));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(expressValidator());
 
 /* Importando o módulo express-session. */
 
@@ -39,31 +64,53 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 */
 
-/* configurar o middleware express.static */
-app.use(express.static('./public'));
+app.use(morgan("dev"));
 
-/* configurar o middleware body-parser */
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+consign()
+	.include("src/models")
+	.then("src/routes")
+	.into(app);
 
-/* configurar o middleware express-validator */
-app.use(expressValidator());
+mongoose.set("useCreateIndex", true);
 
-/* Setando morgan */
-app.use(morgan('dev'));
+app.use((err, req, res, next) => {
+	log.error(
+		"Arquivo: app.j | Erro catch middleware ",
+		err,
+		" | criado em: ",
+		new Date().toJSON()
+	);
+	const responseBuildError = new ResponseErrorBuild(res, err);
+	responseBuildError.send();
+});
 
-/* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
-consign().include('src/models')
-	.then('src/routes')
-	.then('src/controllers').into(app);
+
+app.use((req, res, next) => {
+	res.status(404).json({
+		status: false,
+		code: 404,
+		erros: [{
+			msg: `Nenhuma rota encontrada para ${req.path}`
+		}],
+		date: new Date()
+	});
+});
 
 /* Extraindo variaveis de ambiente. */
-env.config({ path: './env/dev.env' });
+if (process.env.NODE_ENV !== "production") {
+	require("dotenv").config({ path: "./env/dev.env" });
+} else {
+	require("dotenv").config({ path: "./env/prod.env" });
+}
 
 /* Conecta com o banco de dados e lida com problemas de conexão */
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASE, {
+	useNewUrlParser: true
+});
+
 mongoose.Promise = global.Promise; // → Queremos que o mongoose utilize promises ES6
-mongoose.connection.on('error',err => {
+
+mongoose.connection.on("error", err => {
 	console.log(`🙅 🚫 → ${err.message}`);
 });
 
