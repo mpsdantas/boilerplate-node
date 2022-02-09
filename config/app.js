@@ -1,10 +1,3 @@
-/*
- * @Author: Marcus Dantas
- * @Date: 2019-02-03 01:54:51
- * @Last Modified by: Marcus Dantas
- * @Last Modified time: 2019-02-24 20:04:48
- */
-
 const express = require("express");
 
 const consign = require("consign");
