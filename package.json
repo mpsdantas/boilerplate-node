@@ -10,10 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mpsdantas/boilerplate-node.git"
-  },
+  "repository": "git+https://github.com/mpsdantas/boilerplate-node.git",
   "author": "Marcus Paulo Soares Dantas",
   "license": "MIT",
   "bugs": {
@@ -21,19 +18,19 @@
   },
   "homepage": "https://github.com/mpsdantas/boilerplate-node#readme",
   "dependencies": {
-    "body-parser": "1.18.3",
+    "body-parser": "1.19.1",
     "consign": "0.1.6",
     "cors": "^2.8.5",
-    "dotenv": "6.0.0",
+    "dotenv": "16.0.0",
     "express": "4.16.4",
-    "express-validator": "5.3.1",
-    "jsonwebtoken": "^8.4.0",
-    "match-sorter": "^2.3.0",
-    "module-alias": "^2.1.0",
-    "mongoose": "5.4.9",
-    "mongoose-transactions": "^1.1.1",
-    "morgan": "1.9.1",
-    "request": "^2.88.0",
-    "simple-node-logger": "^18.12.21"
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "match-sorter": "^6.3.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "6.2.1",
+    "mongoose-transactions": "^1.1.4",
+    "morgan": "1.10.0",
+    "request": "^2.88.2",
+    "simple-node-logger": "^21.8.12"
   }
 }
